@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user-service-route
+          uri: http://192.168.101.46:8081
+          predicates:
+            - Path=/users/**
+        - id: order-service-route
+          uri: http://localhost:8081
+          predicates:
+            - Path=/order/**
+        - id: order-service-route
+          uri: http://localhost:8081
+          predicates:
+            - Path=/cart/**
+        - id: product-catalog-service-route
+          uri: http://localhost:8080
+          predicates:
+            - Path=/product/**
+  logging:
+    level: TRACE
+server.port: 9090
+
